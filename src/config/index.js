@@ -4,9 +4,9 @@ export const baseConfig = {
   env,
   isDev: env === 'development',
   isTest: env === 'testing',
-  port: process.env.PORT || '3000',
+  port: process.env.NODE_DOCKER_PORT || '8080',
   secrets: {
-    jwt:  'learneverything',
+    jwt: 'learneverything',
     jwtExp: '100d',
   },
 };

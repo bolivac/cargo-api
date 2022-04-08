@@ -4,6 +4,7 @@ import path from 'path';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import 'dotenv/config';
 
 import { connect } from './src/utils/db.js';
 import { baseConfig } from './src/config/index.js';
@@ -17,11 +18,14 @@ import userRouter from './src/routes/user.router.js';
 import { passportInit } from './src/utils/passport.js';
 
 const app = express();
+const corsOptions = {
+  origin: process.env.CLIENT_ORIGIN || 'http://localhost:8080',
+};
 // start database
 connect();
 
 app.use(logger('dev'));
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

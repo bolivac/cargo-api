@@ -8,16 +8,17 @@ const db = {};
 db.mongoose = mongoose;
 
 export const connect = async () => {
-  let dbUri = `mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`;
+  let dbUri = dbConfig.url;
+
   if (process.env.MONGODB_URI) {
     dbUri = process.env.MONGODB_URI;
   }
 
+  console.log(dbUri);
   try {
     await db.mongoose.connect(dbUri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      dbName: 'biznisposta'
     });
     console.log('Successfully connect to MongoDB.');
   } catch (err) {

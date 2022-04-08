@@ -1,2 +1,12 @@
 # Description
-This API is a service to cargo-app client application
+This API is a service created for cargo-app client application
+
+# How to install
+Run `npm install` to download the node modules.
+
+# Development server
+Run `npm run dev` for a dev server. Navigate to `http://localhost:8080`.
+
+# Docker
+
+You need to have docker as a prerequisite, after that you can run `docker-compose up`.

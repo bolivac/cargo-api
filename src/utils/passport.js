@@ -1,5 +1,5 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import user from '../models/user.model.js';
+import { getUserById } from '../utils/crud.js';
 import { baseConfig } from '../config/index.js';
 
 export const passportInit = function (passport) {
@@ -8,7 +8,7 @@ export const passportInit = function (passport) {
   opts.secretOrKey = baseConfig.secrets.jwt;
   passport.use(
     new Strategy(opts, (jwt_payload, done) => {
-      user.getUserById(jwt_payload._id, (err, user) => {
+      getUserById(jwt_payload._id, (err, user) => {
         if (err) {
           return done(err, false);
         }

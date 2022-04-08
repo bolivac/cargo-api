@@ -1,3 +1,4 @@
+import bcrypt from 'bcryptjs';
 import pkg from 'mongodb';
 const { ObjectId } = pkg;
 
@@ -116,6 +117,31 @@ export const removeOne = (model) => (req, res) => {
         res.status(200).send(result);
       }
     });
+  });
+};
+
+export const getUserById = (model) => (id, callback) => {
+  model.findById(id, callback);
+};
+
+export const getUserByUsername = (model) => (username, callback) => {
+  const query = { username: username };
+  model.findOne(query, callback);
+};
+
+export const addUser = (newUser, callback) => {
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
+      newUser.password = hash;
+      newUser.save(callback);
+    });
+  });
+};
+
+export const comparePassword = (password, hash, callback) => {
+  bcrypt.compare(password, hash, (err, isMatch) => {
+    if (err) throw err;
+    callback(null, isMatch);
   });
 };
 
