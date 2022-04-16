@@ -19,7 +19,7 @@ import { passportInit } from './src/utils/passport.js';
 
 const app = express();
 const corsOptions = {
-  origin: process.env.CLIENT_ORIGIN || 'http://localhost:8080',
+  origin: process.env.CLIENT_ORIGIN || 'http://localhost:4200',
 };
 // start database
 connect();

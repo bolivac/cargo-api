@@ -3,7 +3,9 @@ import controllers from '../controllers/courier.controller.js';
 
 const router = Router();
 
-router.route('/').get(controllers.getMany).post(controllers.createOne);
+router.route('/')
+.get(controllers.getMany)
+.post(controllers.createOne);
 
 router
   .route('/:id')

@@ -11,9 +11,7 @@ export const connect = async () => {
   let dbUri = dbConfig.url;
   const options = {
     useNewUrlParser: true,
-    reconnectTries: Number.MAX_VALUE,
-    reconnectInterval: 500,
-    connectTimeoutMS: 10000,
+    useUnifiedTopology: true
   };
 
   if (process.env.MONGODB_URI) {
